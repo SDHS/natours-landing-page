@@ -1,0 +1,66 @@
+.row {
+    max-width : $grid-width;
+    /*
+        max-width means that if the specified width is
+available, then ofcourse, occupy that. But if it is not, then just occupy 100% of the available space.
+    */
+    margin : 0 auto;
+    /*
+        For centering a block element inside of another 
+block element.
+    */
+    
+    &:not(:last-child) {
+        margin-bottom: $gutter-vertical;
+    }
+    
+    @include clearfix;
+    
+    .col-1-of-2 {
+        width : calc((100% - #{$gutter-horizontal}) / 2);
+        /*
+            calc() is a native CSS function, not a SASS
+function. Thus, in order to use SASS variables in CSS, we have to precede them with a hash (#) and wrap them in curly braces {}.
+        */
+        @extend %col;
+    }
+    
+    
+    .col-1-of-3 {
+        width : calc((100% - (2 * #{$gutter-horizontal})) / 3);
+        
+        @extend %col;
+    }
+    
+    
+    .col-2-of-3 {
+        width : calc(2 * ((100% - 2 * (#{$gutter-horizontal})) / 3) + #{$gutter-horizontal});
+        /*
+            Double the width of .col-1-of-3, so multiply
+by 2, and also add the $gutter-horizontal.
+        */
+        @extend %col;
+    }
+    
+    
+    
+    .col-1-of-4 {
+        width : calc((100% - (3 * #{$gutter-horizontal})) / 4);
+        @extend %col;
+    }
+    
+    
+    
+    .col-2-of-4 {
+        width : calc(2 * ((100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal});
+        
+        @extend %col;
+    }
+    
+    
+    .col-3-of-4 {
+        width : calc(3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + (2 * #{$gutter-horizontal}));
+        @extend %col;
+    }
+    
+}

@@ -1,0 +1,60 @@
+
+/***********************
+* HEADER
+***********************/
+
+.header {
+    height: 95vh;
+    /*
+        height should be 95% of the viewport height.
+    */
+    background-image: -webkit-gradient(linear, left top, right bottom, from(rgba($color-primary-light, 0.8)), to(rgba($color-primary-dark, 0.8))), url("../img/hero.jpg");
+    background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url("../img/hero.jpg");
+    background-size: cover;
+    /*
+        It will always try to fit the element inside
+the box, whatever the width.
+    */
+    background-position: top;
+    /*
+        Ensures that whatever the viewport size, the 
+top of the image stays at the top of the container.
+    */
+    position: relative;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    -moz-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    /*
+        We need to specify the coords of the 4 corners
+to specify the dimensions of the polygon. Then we can get that nice 'cut' in the image. The coords are specified clockwise. These are not absolute coords, but relative.
+    */
+
+    &__logo-box {
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
+
+
+    &__logo {
+        height: 3.5rem;
+    }
+
+
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        /*
+            50% would put the first pixel (top-left) at 
+exactly the center from the top. But, since we cut out a wedge from the bottom, it looks as though its not quite centered (when it actually really is). To compensate for that, we set the top to 40%.
+    */
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        /*
+            Shifts half of the width to the left (x-axis), and half to the top. (y-axis)
+    
+        */
+        text-align: center;
+    }
+}

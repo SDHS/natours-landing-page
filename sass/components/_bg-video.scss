@@ -1,0 +1,21 @@
+.bg-video {
+    position : absolute;
+    top : 0;
+    left : 0;
+    height : 100%;
+    width : 100%;
+    z-index: -1;
+    opacity: 0.15;
+    overflow : hidden;
+    
+    &__content {
+        height : 100%;
+        width : 100%;
+        object-fit: cover;
+        /*
+            The video will cover its entire parent
+container while still maintaining its aspect ratio. This is not possible with just setting the width and height to 
+100%. This property is quite similar to background-size : cover, but for elements other than images, but it works with images too.
+        */
+    }
+}

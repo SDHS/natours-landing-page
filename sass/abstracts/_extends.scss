@@ -1,0 +1,6 @@
+%col {
+    float : left;
+    &:not(:last-child) {
+        margin-right : $gutter-horizontal;
+    }
+}

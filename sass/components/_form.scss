@@ -1,0 +1,167 @@
+.form {
+    
+    &__group {
+        
+        &:not(:last-child) {
+            margin-bottom: 2rem;
+        }
+        
+    }
+    
+    &__input {
+        
+        font-size: 1.5rem;
+        font-family: inherit;
+        color : inherit;
+        padding: 1.5rem 2rem;
+        border-radius: 0.2rem;
+        background-color: rgba($color-white, 0.50);
+        border : none;
+        border-bottom: 0.3rem solid transparent;
+        /*    
+            When we add the border only in the focus
+state, and there is no border normally, then when the input element is focused, the element below it moves down a bit to create some space for the border. To rectify this, we set the border even in the normal state, but make the color transparent, so that the space required for the border is available from the start.
+        */
+        width : 90%;
+        display: block;
+        transition: all 0.3s;
+        
+        
+        
+        &:focus {
+        outline : none;
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+        border-bottom: 0.3rem solid $color-primary;
+        }
+        
+        
+        
+        &:required {
+            box-shadow : none;
+            /*
+                Resetting the default CSS by Mozilla.
+            */
+        }
+        
+        &:focus:invalid {
+            border-bottom: 0.3rem solid $color-secondary-dark;
+            /*
+                The HTML5 tells us whether the input
+entered in the input forms are actually valid or not. Like, if there's no @ in the email, then it's obviously invalid. Thus, for these states, we can also style our form.
+            */
+        }
+    
+        
+        &::-webkit-input-placeholder {
+        color : $color-grey-dark-2;
+        /*
+            This pseudo element is for the placeholder
+text.
+        */
+        }
+        
+        
+        &::-moz-input-placeholder {
+        color : $color-grey-dark-2;
+        /*
+            This pseudo element is for the placeholder
+text.
+        */
+        }
+    }
+    
+    
+    
+   
+    
+    
+    
+    
+    &__label {
+         font-size : 1.2rem;
+        font-weight : 700;
+        margin-left: 2rem;
+        margin-top: 0.7rem;
+        display : block;
+        transform: translateY(0);
+        transition: all 0.3s;
+        /*
+            display must be set to block in order to
+use the above box model properties (margin).
+        */
+    }
+    
+    
+    &__input:placeholder-shown + &__label{
+        /*
+            placeholder-shown: Styling for when the
+placeholder is shown.
+            + selector: The adjacent sibling selector. 
+An adjacent sibling is the one that comes directly after the element we have selected. The sibling needs to be
+AFTER the element we have selected, not BEFORE.
+            ~ selector : The general sibling selector.
+        */
+        opacity: 0;
+        visibility: hidden;
+        /*
+            As long as the placeholder is being shown,
+we don't want our label to be seen.
+            If we set the opacity to 0, then the element 
+is still on the page, just hidden. But, if we set the visibility to hidden, then the element is really gone. But, since we cannot animate the visibility, but we CAN the opacity, so we set the opacity.
+        */
+        transform: translateY(-4rem);
+    }
+    
+    &__radio-group {
+        width : 49%;
+        display : inline-block;
+    }
+    
+    &__radio-input {
+        display : none;
+    }
+    
+    &__radio-label {
+        font-size : $default-font-size;
+        cursor : pointer;
+        position : relative;
+        padding-left: 4.5rem;
+    }
+    
+    
+    &__radio-button {
+        height : 3rem;
+        width : 3rem;
+        border : 0.5rem solid $color-primary;
+        border-radius: 50%;
+        display : inline-block;
+        position : absolute;
+        left : 0;
+        top : -0.3rem;
+        
+        
+        &::after {
+            content:  "";
+            display : block;
+            height : 1.3rem;
+            width : 1.3rem;
+            border-radius: 50%;
+            position : absolute;
+            /*
+                Now the parent of this is
+&__radio-button. Its position is set to absolute, while before whenever we want to use the absolute position, we had to the set the position of the parent container to relative. The position value doesn't really matter, all that matters is that the position is explicitly specified. Since in this case the position of its parent is explicitly specified to absolute, so it'll work.
+            */
+            top : 50%;
+            left : 50%;
+            transform: translate(-50%, -50%);
+            background-color: $color-primary;
+            opacity : 0;
+            transition: opacity 0.2s;
+            
+        }
+    }
+    
+    &__radio-input:checked ~ &__radio-label &__radio-button::after {
+        opacity : 1;
+    }
+}

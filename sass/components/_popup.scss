@@ -1,0 +1,125 @@
+.popup {
+    height : 100vh;
+    width : 100%;
+    position : fixed;
+    top: 0;
+    left : 0;
+    background-color: rgba($color-black, 0.8);
+    z-index : 9999;
+    opacity: 0;
+    visibility: hidden;
+    /*
+        To animate it, we set the opacity to 0. But,
+the content is still clickable, so to hide that, we set visibility to hidden.
+    */
+    transition: all 0.3s;
+    
+    
+    
+    
+    &__content {
+        @include absoluteCenter;
+        width : 75%;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
+        border-radius: 0.3rem;
+        display : table;
+        /*
+            Now their children &__left and &__right 
+should be set to display : table-cell, then both of them will be given the same height.
+        */
+        overflow : hidden;
+        /*
+            The images hide the border-radius. So, 
+that's why overflow is set to hidden.
+        */
+        opacity: 0;
+        transform: translate(-50%, -50%)scale(0.25);
+        transition: all 0.5s 0.2s;
+        /*
+            last is delay.
+        */
+    }
+    
+    
+    &__left {
+        width : 33.333333%;
+        display : table-cell;
+    }
+    
+    
+    &__right {
+        width : 66.66666667%;
+        display : table-cell;
+        vertical-align: middle;
+        /*
+            property that is available when display : table-cell. This div will now be placed in the middle.
+        */
+        padding: 3rem 5rem;
+    }
+    
+    
+    &__img {
+        display: block;
+        width : 100%;
+    }
+    
+    
+    
+    &__text {
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+        
+        column-count : 2;
+        /*
+            Our text will be divided into two columns.
+        */
+        column-gap : 4rem;
+        column-rule : 0.1rem solid $color-grey-light-2;
+        /*
+            Like a line between the two columns.
+        */
+        
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        /*
+            Place hyphens automatically. Requires the
+HTML lang attribute to be specified!!!
+        */
+    }
+    
+    
+    // Open states
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    
+    
+    &:target &__content {
+        opacity: 1;
+        transform: translate(-50%, -50%)scale(1);
+    }
+    
+    &__close {
+        &:link,
+        &:visited {
+            color : $color-grey-dark;
+            position : absolute;
+            top : 2.5rem;
+            right : 2.5rem;
+            font-size: 3rem;
+            text-decoration: none;
+            diplay : inline-block;
+            transform: all 0.2s;
+            line-height : 1;
+        }
+        
+        &:hover {
+            color : $color-primary;
+        }
+    }
+}

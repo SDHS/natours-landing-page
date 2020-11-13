@@ -1,0 +1,189 @@
+.card {
+    //FUNCTIONALITY
+    -webkit-perspective: 150rem;
+    -moz-perspective : 150rem;
+    position : relative;
+    height : 52rem;
+    
+    &__side {
+        height : 52rem;
+        transition: all 0.8s ease;
+        position : absolute;
+        /*
+            With position absolute, the same thing can
+happen as with floats, the height collapses. With float, we can do clearfix. But, with absolute positioning, there's just no fix, atleast with pure CSS. Now, what we can do, is to hardcode the height. We should give the same height to the parent that the child has.
+        */
+        top : 0;
+        left : 0;
+        width : 100%;
+        backface-visibility: hidden;
+        border-radius: 0.3rem;
+        overflow : hidden;
+        /*
+            When we set the image, it was overflowing
+this parent container and thus removing the border radius. To rectify that, we have set overflow to hidden.
+        */
+        box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+        
+        
+        &--front {
+            background-color: $color-white;
+        }
+        
+        &--back {
+            transform: rotateY(180deg);
+            
+            &-1{
+                background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+            }
+            
+            
+            &-2 {
+                background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+            }
+            
+            
+            &-3 {
+                background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark);
+            }
+        }
+    }
+    
+    
+    &:hover &__side--front {
+        transform: rotateY(-180deg);
+    }
+    
+    &:hover &__side--back {
+        transform: rotateY(0);
+    }
+    /*
+        When we hover .card, we want .card__slide--front
+to transform. That's what the above selector means.
+Another thing to keep in mind is that when the card is in the default state, then the front side is the one that is displayed. What this, then, means is that the backside is already rotated 180deg. So, the rotation effect is only applied on the front.
+        As backside is already rotated 180deg, so it 
+needs to rotate back to 0.
+    
+        To use the perspective property, we have to use 
+it on the parent element. That's why we have defined the __side child div.
+    */
+    
+    //FRONT SIDE STYLING
+    &__picture {
+        background-size: cover;
+        height: 23rem;
+        background-blend-mode: screen;
+        /*
+            Used for blending two images/
+linear-gradients together.
+        */
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        -moz-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        border-top-left-radius: 0.3rem;
+        border-top-right-radius: 0.3rem;
+        
+        &--1 {
+            background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url("../img/nat-5.jpg");
+        }
+        
+        &--2 {
+            background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url("../img/nat-6.jpg");
+        }
+        
+        &--3 {
+            background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url("../img/nat-7.jpg");
+        }
+    }
+    
+    
+    &__heading {
+        font-size: 2.8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        text-align: right;
+        color : $color-white;
+        position : absolute;
+        top  : 12rem;
+        right : 2rem;
+        width : 75%;
+    }
+    
+    &__heading-span {
+        padding : 1rem 1.5rem;
+        -webkit-box-decoration-break: clone;
+        -moz-box-decoration-break: clone;
+        box-decoration-break: clone;
+        /*
+            Adds padding on the left and right side
+when it is not being added.
+        */
+        
+        &--1 {
+            background-image: linear-gradient(to right bottom, rgba($color-secondary-light, 0.85), rgba($color-secondary-dark, 0.85));
+        }
+        
+        &--2 {
+            background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.85), rgba($color-primary-dark, 0.85));
+        }
+        
+        
+        &--3 {
+            background-image: linear-gradient(to right bottom, rgba($color-tertiary-light, 0.85), rgba($color-tertiary-dark, 0.85));
+        }
+    }
+    
+    
+    &__details {
+        padding : 3rem;
+        ul {
+            list-style: none;
+            width : 80%;
+            margin : 0 auto;
+            /*
+                We want each list item to have a bottom
+line beneath them. But we dont want that line to occupy the whole width of the card. That's why width here is set to 80%.
+            */
+            
+            li{
+                text-align: center;
+                font-size: 1.5rem;
+                padding : 1rem;
+                
+                &:not(:last-child){
+                    border-bottom: 1px solid $color-grey-light-2;
+                }
+            }
+        }
+    }
+    
+    //BACK SIDE STYLING
+    &__call-to-action {
+        position : absolute;
+        top : 50%;
+        left : 50%;
+        transform: translate(-50%, -50%);
+        /*
+            50% width of the element, not of the parent.
+        */
+        width : 90%;
+        text-align: center;
+    }
+    
+    &__price-box {
+        text-align: center;
+        color: $color-white;
+        margin-bottom: 8rem
+    }
+    
+    &__price-only {
+        font-size: 1.4rem;
+        text-transform: uppercase;
+    }
+    
+    
+    &__price-value {
+        font-size: 6rem;
+        font-weight : 100;
+    }
+}

@@ -1,0 +1,49 @@
+/*************
+* GENERAL
+*************/
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: inherit;
+    /*
+        Inherit keyword will force inheritance of this
+property. So, now it is inherited from body to all the child elements of the body.
+    */
+}
+
+
+html {
+    
+    /*
+        This defines what 1rem is. So, while one could
+argue that font-size belongs to typography, storing it in base is equally valid as it is a BASE definition, upon which all sizes are dependent.
+    */
+    font-size: 62.5%;
+    /*
+        This is the root font-size that rem is based on.
+We have set it to 10px to, well, make our lives easier to be honest. Now, 1rem = 10px. Easy.
+        But, it is really bad practice to set the 
+font-size in pixels. We should set it in terms of percentage. This would be a percentage of the browser's default font-size, which in most cases, is 16px. Most people increase that font-size so that they can see better. So, by setting our font-size in terms of the browser font-size's percentage, we create an even more responsive design.
+        As the default is 16px, and we wanna set it to 
+10px, which in terms of percentage, is 62.5%.
+    */
+}
+
+body {
+    padding: 3rem;
+    /*
+        padding : 30px;
+        To get that nice, white border around the 
+whole webpage. (Padding is not being inherited.)
+    */
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    /*
+        To use inheritance, we set it here instead of
+in the universal selector.
+    */
+}

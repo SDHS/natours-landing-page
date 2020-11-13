@@ -1,0 +1,168 @@
+.btn {
+    
+    
+    &,
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        border-radius: 10rem;
+        -webkit-transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+        /*
+        We can apply transition to all elements too.
+(All elements that are in other psuedo-classes.)
+    */
+        position: relative;
+        font-size: $default-font-size;
+        
+        
+        // Change for the <button> element
+        border : none;
+        cursor: pointer;
+    }
+
+
+    &:hover {
+        -webkit-transform: translateY(-0.3rem);
+        transform: translateY(-0.3rem);
+        /*
+        Negative is up, positive is down.
+        */
+        -webkit-box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+        /*
+        args : x-axis offset, y-axis offset, blur, color 
+        */
+        
+        
+        
+        &::after {
+            -webkit-transform: scaleX(1.4) scaleY(1.6);
+            transform: scaleX(1.4) scaleY(1.6);
+            /*
+            Double the size it had before.
+            */
+            opacity: 0;
+            /*
+            Trick for fading something out in hover. Set its opacity to 0.
+            */
+        }
+    }
+
+    &:active,
+    &:focus 
+    {
+        /*
+        When we click an element, that's the active 
+state.
+    */
+        -webkit-transform: translateY(-0.1rem);
+        transform: translateY(-0.1rem);
+        -webkit-box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+        box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+    }
+
+
+
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+        
+         &::after {
+            content: "";
+            display: inline-block;
+            background-color: $color-white;
+        }
+    }
+    
+    
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+        
+         &::after {
+            content: "";
+            display: inline-block;
+            background-color: $color-primary;
+        }
+    }
+
+
+    &::after {
+        content: "";
+        display: inline-block;
+        /*
+        MUST SPECIFY THESE TWO PROPRETIES FOR THE 
+:after PSUEDO-CLASS TO WORK!!!
+    */
+        height: 100%;
+        width: 100%;
+        /*
+        The after pseudo element is basically treated 
+like a child of the button. So we want the exact same width and height as the 'parent'.
+    */
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        /*
+        We wanna put the after button behind our actual
+button for the animation to work. Otherwise it just looks like a part of our button.
+    */
+        z-index: -1;
+        -webkit-transition: all 0.4s;
+        transition: all 0.4s;
+
+    }
+
+
+
+    &--animated {
+        -webkit-animation: moveInBottom 0.5s ease-out 0.75;
+        animation: moveInBottom 0.5s ease-out 0.75;
+        /*
+            last is animation delay.
+        */
+        -webkit-animation-fill-mode: backwards;
+        animation-fill-mode: backwards;
+
+        /*
+            Applies the 0% styles before the animation 
+starts. This is because the button was visible before the animation started due to the delay. To prevent that, we applied that styles of 0% which sets the opacity to 0, so that the button is only  visible when the animation is starting, not before.
+        */
+    }
+
+}
+
+
+
+.btn-text {
+    &:link,
+    &:visited {
+        font-size : $default-font-size;
+        color : $color-primary;
+        display : inline-block;
+        text-decoration: none;
+        border-bottom: 0.1rem solid $color-primary;
+        padding : 0.3rem;
+        transition: all 0.2s;
+    }
+    
+    
+    &:hover {
+        background-color : $color-primary;
+        color : $color-white;
+        box-shadow : 0 1rem 2rem rgba($color-black, 0.15);
+        transform: translateY(-0.2rem);
+    }
+    
+    
+    &:active {
+        box-shadow : 0 0.5rem 1rem rgba($color-black, 0.15);
+        transform: translateY(0);
+    }
+}

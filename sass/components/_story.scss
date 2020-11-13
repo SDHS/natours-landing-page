@@ -1,0 +1,111 @@
+.story {
+    width : 75%;
+    margin : 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+    background-color : rgba($color-white, 0.60);
+    border-radius: 0.3rem;
+    padding: 6rem;
+    padding-left : 9rem;
+    /*
+        Paddings are not added up. The last one is used.
+    */
+    font-size: $default-font-size;
+    transform: skewX(-12deg);
+    
+    
+    
+    &__shape {
+        width : 15rem;
+        height : 15rem;
+        float : left;
+        /*
+            Image will be on the left, and all the
+elements will float around it.
+        */
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        -moz-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+        /*
+            args: radius (% of width and height). If we 
+set radius to half of width and height, the obviously the diameter will be twice that, so exactly the width.
+            args: at coord of center. Which, is 50% 50%, 
+so exactly center.
+            In order for shape-outside to work, the 
+element MUST be floated AND the element MUST have defined dimensions (width and height).
+        */
+        -moz-clip-path : circle(50% at 50% 50%);
+        -webkit-clip-path : circle(50% at 50% 50%);
+        clip-path : circle(50% at 50% 50%);
+        transform: translateX(-3rem) skewX(12deg);
+        /*
+            Best way to move around an element that is
+floated is not margin or anything like that, but we should just use a transform. 
+        */
+        position : relative;
+    }
+    
+    
+    &__img {
+        height : 100%;
+        /*
+            Responsive and flexible images must always
+be given a width/height, without exception.
+            WHY A height OF 100% HERE?
+            Well, the image is inside of a shape, which 
+has the height 15rem. So, we want this image to occupy the whole hieght of its parent (&__shape), that's why it is 100%.
+        */
+        transform: translateX(-4rem) scale(1.4);
+        /*
+            Right now, the girl was appearing on the 
+right side, instead of in the center. So, we translated it to the left to rectify that.
+        */
+        backface-visibility: hidden;
+        transition: all 0.5s;
+    }
+    
+    
+    &__text {
+        transform: skewX(12deg);
+    }
+    
+    
+    
+    &__caption {
+        position: absolute;
+        top: 50%;
+        left : 50%;
+        transform: translate(-50%, 20%);
+        /*
+            We want it to come from the bottom, that's
+why we have first placed it way down.
+        */
+        color : $color-white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        opacity : 0;
+        transition : all 0.5s;
+        backface-visibility: hidden;
+    }
+    
+    &:hover &__caption {
+        opacity : 1;
+        transform: translate(-50%, -50%);
+    }
+    
+    /*
+        When .story is hovered, we want the above 
+effects to happen on .story--caption. That's what the above selector means.
+    */
+    
+    
+    &:hover &__img {
+        transform: translateX(-4rem) scale(1);
+        filter: blur(0.3rem) brightness(80%);
+    }
+    
+    /*
+        When .story is hovered, we want the above 
+effects to happen on .story--img. That's what the above selector means.
+    */
+}

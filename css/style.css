@@ -1,0 +1,1589 @@
+/*******************
+* SASS VARIABLES 
+*******************/
+.row .col-1-of-2,
+.row .col-1-of-3,
+.row .col-2-of-3,
+.row .col-1-of-4,
+.row .col-2-of-4,
+.row .col-3-of-4 {
+    float: left;
+}
+
+.row .col-1-of-2:not(:last-child),
+.row .col-1-of-3:not(:last-child),
+.row .col-2-of-3:not(:last-child),
+.row .col-1-of-4:not(:last-child),
+.row .col-2-of-4:not(:last-child),
+.row .col-3-of-4:not(:last-child) {
+    margin-right: 6rem;
+}
+
+/*
+    Browsers are optimized for opacity and transform.
+So its best to use these two properties with the @keyframes rule.
+*/
+@-webkit-keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+        -moz-transform: translateX(-10rem);
+        -webkit-transform: translateX(-10rem);
+        /*
+            Positive value is right. Negative value is 
+left.
+        */
+    }
+
+    80% {
+        transform: translateX(1rem);
+        -moz-transform: translateX(1rem);
+        -webkit-transform: translateX(1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+        -webkit-transform: translate(0);
+        -moz-transform: translate(0);
+        /*
+            When the animation is completed, we want it
+to look exactly as it looks right now. So, we put 0 here.
+        */
+    }
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+        -moz-transform: translateX(-10rem);
+        -webkit-transform: translateX(-10rem);
+        /*
+            Positive value is right. Negative value is 
+left.
+        */
+    }
+
+    80% {
+        transform: translateX(1rem);
+        -moz-transform: translateX(1rem);
+        -webkit-transform: translateX(1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+        -webkit-transform: translate(0);
+        -moz-transform: translate(0);
+        /*
+            When the animation is completed, we want it
+to look exactly as it looks right now. So, we put 0 here.
+        */
+    }
+}
+
+@-webkit-keyframes moveInRight {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(10rem);
+        transform: translateX(10rem);
+    }
+
+    80% {
+        -webkit-transform: translateX(-1rem);
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(10rem);
+        transform: translateX(10rem);
+    }
+
+    80% {
+        -webkit-transform: translateX(-1rem);
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
+
+@-webkit-keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(3rem);
+        transform: translateY(3rem);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(3rem);
+        transform: translateY(3rem);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
+
+/*************
+* GENERAL
+*************/
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: inherit;
+    /*
+        Inherit keyword will force inheritance of this
+property. So, now it is inherited from body to all the child elements of the body.
+    */
+}
+
+html {
+    /*
+        This defines what 1rem is. So, while one could
+argue that font-size belongs to typography, storing it in base is equally valid as it is a BASE definition, upon which all sizes are dependent.
+    */
+    font-size: 62.5%;
+    /*
+        This is the root font-size that rem is based on.
+We have set it to 10px to, well, make our lives easier to be honest. Now, 1rem = 10px. Easy.
+        But, it is really bad practice to set the 
+font-size in pixels. We should set it in terms of percentage. This would be a percentage of the browser's default font-size, which in most cases, is 16px. Most people increase that font-size so that they can see better. So, by setting our font-size in terms of the browser font-size's percentage, we create an even more responsive design.
+        As the default is 16px, and we wanna set it to 
+10px, which in terms of percentage, is 62.5%.
+    */
+}
+
+body {
+    padding: 3rem;
+    /*
+        padding : 30px;
+        To get that nice, white border around the 
+whole webpage. (Padding is not being inherited.)
+    */
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    /*
+        To use inheritance, we set it here instead of
+in the universal selector.
+    */
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    /*
+        font-size : 16px;
+        Everything related to fonts should be specified
+in the body selector, instead of the universal selector. Doing it this way will ensure that the font properties are inherited by all the child elements. 
+    */
+    line-height: 1.7;
+    /*
+        Means that line-height is 1.7 times bigger than 
+the predefined line-height.
+    */
+    color: #777;
+}
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /*
+        Sometimes, at the end of animations, the 
+elements move a bit to the top. This is not the intention of the animation. No one really knows why it happens But, to rectify that, we set the backface-visibility property to hidden in the container.
+        This property actually determines whether the 
+back part of the element is visible to the user when we transform the element or not.
+    */
+    margin-bottom: 6rem;
+}
+
+.heading-primary--main {
+    display: block;
+    /*
+        Because we want to display the heading in 2 
+lines.
+    */
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    -moz-animation-name: moveInLeft;
+    -webkit-animation-name: moveInLeft;
+    animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    /*
+        animation-timing-function : ease | ease-in | 
+ease-out | ease-in-out | linear | step-start | step-end | etc.. Specifies how a CSS animation should progress over the duration of each cycle.
+    
+        animation-iteration-count : 3; (animation will
+happen 3 times.)
+    
+        animation-delay : 3s; (self-exlanatory)
+    */
+}
+
+.heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    -webkit-animation: moveInRight 1s ease-out;
+    animation: moveInRight 1s ease-out;
+}
+
+.heading-secondary {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    background-image: -webkit-gradient(linear, left top, right top, from(#7ed56f), to(#28b485));
+    background-image: linear-gradient(to right, #7ed56f, #28b485);
+    /*
+        To achieve the gradient colouring on the text,
+we first set the background-image to the gradient that we want.
+    */
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    /*
+        Then, we set the background-clip to text. Now,
+the background will only be shown over the text.
+    */
+    color: transparent;
+    /*
+        Now, the text is still infront of the 
+background-image. So, it will still be shown in grey. To correct that, we set the color of the text to trasparent. Now, we'll only see the background, that has already been clipped to the form of the text.
+    */
+    letter-spacing: .2rem;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+
+.heading-secondary:hover {
+    -webkit-transform: skewY(2deg) skewX(15deg) scale(1.1);
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.heading-tertiary {
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.paragraph {
+    font-size: 1.6rem;
+}
+
+.paragraph:not(:last-child) {
+    margin-bottom: 3rem;
+}
+
+.u-center-text {
+    text-align: center !important;
+    /*
+        The h2 heading was specified as inline-block.
+So, the text is now treated as inline and can be centered using text-align.
+    */
+}
+
+.u-margin-bottom-small {
+    margin-bottom: 1.5rem !important;
+}
+
+.u-margin-bottom-medium {
+    margin-bottom: 4rem !important;
+}
+
+.u-margin-bottom-big {
+    margin-bottom: 8rem !important;
+}
+
+.u-margin-top-big {
+    margin-top: 8rem !important;
+}
+
+.u-margin-top-huge {
+    margin-top: 10rem !important;
+}
+
+.btn,
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    -webkit-transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    /*
+        We can apply transition to all elements too.
+(All elements that are in other psuedo-classes.)
+    */
+    position: relative;
+    font-size: 1.6rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    -webkit-transform: translateY(-0.3rem);
+    transform: translateY(-0.3rem);
+    /*
+        Negative is up, positive is down.
+        */
+    -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    /*
+        args : x-axis offset, y-axis offset, blur, color 
+        */
+}
+
+.btn:hover::after {
+    -webkit-transform: scaleX(1.4) scaleY(1.6);
+    transform: scaleX(1.4) scaleY(1.6);
+    /*
+            Double the size it had before.
+            */
+    opacity: 0;
+    /*
+            Trick for fading something out in hover. Set its opacity to 0.
+            */
+}
+
+.btn:active,
+.btn:focus {
+    /*
+        When we click an element, that's the active 
+state.
+    */
+    -webkit-transform: translateY(-0.1rem);
+    transform: translateY(-0.1rem);
+    -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.btn--white {
+    background-color: #fff;
+    color: #777;
+}
+
+.btn--white::after {
+    content: "";
+    display: inline-block;
+    background-color: #fff;
+}
+
+.btn--green {
+    background-color: #55c57a;
+    color: #fff;
+}
+
+.btn--green::after {
+    content: "";
+    display: inline-block;
+    background-color: #55c57a;
+}
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    /*
+        MUST SPECIFY THESE TWO PROPRETIES FOR THE 
+:after PSUEDO-CLASS TO WORK!!!
+    */
+    height: 100%;
+    width: 100%;
+    /*
+        The after pseudo element is basically treated 
+like a child of the button. So we want the exact same width and height as the 'parent'.
+    */
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*
+        We wanna put the after button behind our actual
+button for the animation to work. Otherwise it just looks like a part of our button.
+    */
+    z-index: -1;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.btn--animated {
+    -webkit-animation: moveInBottom 0.5s ease-out 0.75;
+    animation: moveInBottom 0.5s ease-out 0.75;
+    /*
+            last is animation delay.
+        */
+    -webkit-animation-fill-mode: backwards;
+    animation-fill-mode: backwards;
+    /*
+            Applies the 0% styles before the animation 
+starts. This is because the button was visible before the animation started due to the delay. To prevent that, we applied that styles of 0% which sets the opacity to 0, so that the button is only  visible when the animation is starting, not before.
+        */
+}
+
+.btn-text:link,
+.btn-text:visited {
+    font-size: 1.6rem;
+    color: #55c57a;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 0.1rem solid #55c57a;
+    padding: 0.3rem;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.btn-text:hover {
+    background-color: #55c57a;
+    color: #fff;
+    -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    -webkit-transform: translateY(-0.2rem);
+    transform: translateY(-0.2rem);
+}
+
+.btn-text:active {
+    -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.composition {
+    position: relative;
+}
+
+.composition__photo {
+    width: 55%;
+    /*
+            Always define the width of images in
+percentages. This leads to responsive web design.
+        */
+    -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+    position: absolute;
+    z-index: 10;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    outline-offset: 2rem;
+    /*
+            Allow us to specify a distance between
+the content box and the border (in this case outline, but they are quite same). With border we would use padding, but with outline we can actually use outline-offset.
+        */
+}
+
+.composition__photo--p1 {
+    left: 0;
+    top: -2rem;
+}
+
+.composition__photo--p2 {
+    right: 0;
+    top: 2rem;
+}
+
+.composition__photo--p3 {
+    left: 20%;
+    top: 10rem;
+}
+
+.composition__photo:hover {
+    outline: 1.5rem solid #55c57a;
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    -webkit-box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+    z-index: 20;
+}
+
+.composition:hover .composition__photo:not(:hover) {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+}
+
+.feature-box {
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 1.5rem;
+    padding: 2.5rem;
+    text-align: center;
+    border-radius: 0.3rem;
+    -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+    transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+.feature-box__icon {
+    font-size: 6rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    padding: 0 0.3rem;
+    background-image: -webkit-gradient(linear, left top, right top, from(#7ed56f), to(#28b485));
+    background-image: linear-gradient(to right, #7ed56f, #28b485);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    color: transparent;
+}
+
+.feature-box:hover {
+    -webkit-transform: translateY(-1.5rem) scale(1.03);
+    transform: translateY(-1.5rem) scale(1.03);
+}
+
+.card {
+    -webkit-perspective: 150rem;
+    -moz-perspective: 150rem;
+    position: relative;
+    height: 52rem;
+    /*
+        When we hover .card, we want .card__slide--front
+to transform. That's what the above selector means.
+Another thing to keep in mind is that when the card is in the default state, then the front side is the one that is displayed. What this, then, means is that the backside is already rotated 180deg. So, the rotation effect is only applied on the front.
+        As backside is already rotated 180deg, so it 
+needs to rotate back to 0.
+    
+        To use the perspective property, we have to use 
+it on the parent element. That's why we have defined the __side child div.
+    */
+}
+
+.card__side {
+    height: 52rem;
+    -webkit-transition: all 0.8s ease;
+    transition: all 0.8s ease;
+    position: absolute;
+    /*
+            With position absolute, the same thing can
+happen as with floats, the height collapses. With float, we can do clearfix. But, with absolute positioning, there's just no fix, atleast with pure CSS. Now, what we can do, is to hardcode the height. We should give the same height to the parent that the child has.
+        */
+    top: 0;
+    left: 0;
+    width: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 0.3rem;
+    overflow: hidden;
+    /*
+            When we set the image, it was overflowing
+this parent container and thus removing the border radius. To rectify that, we have set overflow to hidden.
+        */
+    -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+}
+
+.card__side--front {
+    background-color: #fff;
+}
+
+.card__side--back {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.card__side--back-1 {
+    background-image: -webkit-gradient(linear, left top, right bottom, from(#ffb900), to(#ff7730));
+    background-image: linear-gradient(to right bottom, #ffb900, #ff7730);
+}
+
+.card__side--back-2 {
+    background-image: -webkit-gradient(linear, left top, right bottom, from(#7ed56f), to(#28b485));
+    background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
+}
+
+.card__side--back-3 {
+    background-image: -webkit-gradient(linear, left top, right bottom, from(#2998ff), to(#5643fa));
+    background-image: linear-gradient(to right bottom, #2998ff, #5643fa);
+}
+
+.card:hover .card__side--front {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.card:hover .card__side--back {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+}
+
+.card__picture {
+    background-size: cover;
+    height: 23rem;
+    background-blend-mode: screen;
+    /*
+            Used for blending two images/
+linear-gradients together.
+        */
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    -moz-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+}
+
+.card__picture--1 {
+    background-image: -webkit-gradient(linear, left top, right bottom, from(#ffb900), to(#ff7730)), url("../img/nat-5.jpg");
+    background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url("../img/nat-5.jpg");
+}
+
+.card__picture--2 {
+    background-image: -webkit-gradient(linear, left top, right bottom, from(#7ed56f), to(#28b485)), url("../img/nat-6.jpg");
+    background-image: linear-gradient(to right bottom, #7ed56f, #28b485), url("../img/nat-6.jpg");
+}
+
+.card__picture--3 {
+    background-image: -webkit-gradient(linear, left top, right bottom, from(#2998ff), to(#5643fa)), url("../img/nat-7.jpg");
+    background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url("../img/nat-7.jpg");
+}
+
+.card__heading {
+    font-size: 2.8rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: right;
+    color: #fff;
+    position: absolute;
+    top: 12rem;
+    right: 2rem;
+    width: 75%;
+}
+
+.card__heading-span {
+    padding: 1rem 1.5rem;
+    -webkit-box-decoration-break: clone;
+    -moz-box-decoration-break: clone;
+    box-decoration-break: clone;
+    /*
+            Adds padding on the left and right side
+when it is not being added.
+        */
+}
+
+.card__heading-span--1 {
+    background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(255, 185, 0, 0.85)), to(rgba(255, 119, 48, 0.85)));
+    background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.85), rgba(255, 119, 48, 0.85));
+}
+
+.card__heading-span--2 {
+    background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(126, 213, 111, 0.85)), to(rgba(40, 180, 133, 0.85)));
+    background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.85), rgba(40, 180, 133, 0.85));
+}
+
+.card__heading-span--3 {
+    background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(41, 152, 255, 0.85)), to(rgba(86, 67, 250, 0.85)));
+    background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85));
+}
+
+.card__details {
+    padding: 3rem;
+}
+
+.card__details ul {
+    list-style: none;
+    width: 80%;
+    margin: 0 auto;
+    /*
+                We want each list item to have a bottom
+line beneath them. But we dont want that line to occupy the whole width of the card. That's why width here is set to 80%.
+            */
+}
+
+.card__details ul li {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
+.card__details ul li:not(:last-child) {
+    border-bottom: 1px solid #eee;
+}
+
+.card__call-to-action {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    /*
+            50% width of the element, not of the parent.
+        */
+    width: 90%;
+    text-align: center;
+}
+
+.card__price-box {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 8rem;
+}
+
+.card__price-only {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+.card__price-value {
+    font-size: 6rem;
+    font-weight: 100;
+}
+
+.story {
+    width: 75%;
+    margin: 0 auto;
+    -webkit-box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 0.3rem;
+    padding: 6rem;
+    padding-left: 9rem;
+    /*
+        Paddings are not added up. The last one is used.
+    */
+    font-size: 1.6rem;
+    -webkit-transform: skewX(-12deg);
+    transform: skewX(-12deg);
+    /*
+        When .story is hovered, we want the above 
+effects to happen on .story--caption. That's what the above selector means.
+    */
+    /*
+        When .story is hovered, we want the above 
+effects to happen on .story--img. That's what the above selector means.
+    */
+}
+
+.story__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    /*
+            Image will be on the left, and all the
+elements will float around it.
+        */
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    -moz-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    /*
+            args: radius (% of width and height). If we 
+set radius to half of width and height, the obviously the diameter will be twice that, so exactly the width.
+            args: at coord of center. Which, is 50% 50%, 
+so exactly center.
+            In order for shape-outside to work, the 
+element MUST be floated AND the element MUST have defined dimensions (width and height).
+        */
+    -moz-clip-path: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    -webkit-transform: translateX(-3rem) skewX(12deg);
+    transform: translateX(-3rem) skewX(12deg);
+    /*
+            Best way to move around an element that is
+floated is not margin or anything like that, but we should just use a transform. 
+        */
+    position: relative;
+}
+
+.story__img {
+    height: 100%;
+    /*
+            Responsive and flexible images must always
+be given a width/height, without exception.
+            WHY A height OF 100% HERE?
+            Well, the image is inside of a shape, which 
+has the height 15rem. So, we want this image to occupy the whole hieght of its parent (&__shape), that's why it is 100%.
+        */
+    -webkit-transform: translateX(-4rem) scale(1.4);
+    transform: translateX(-4rem) scale(1.4);
+    /*
+            Right now, the girl was appearing on the 
+right side, instead of in the center. So, we translated it to the left to rectify that.
+        */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.story__text {
+    -webkit-transform: skewX(12deg);
+    transform: skewX(12deg);
+}
+
+.story__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, 20%);
+    transform: translate(-50%, 20%);
+    /*
+            We want it to come from the bottom, that's
+why we have first placed it way down.
+        */
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    opacity: 0;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.story:hover .story__caption {
+    opacity: 1;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.story:hover .story__img {
+    -webkit-transform: translateX(-4rem) scale(1);
+    transform: translateX(-4rem) scale(1);
+    -webkit-filter: blur(0.3rem) brightness(80%);
+    filter: blur(0.3rem) brightness(80%);
+}
+
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: 0.15;
+    overflow: hidden;
+}
+
+.bg-video__content {
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    /*
+            The video will cover its entire parent
+container while still maintaining its aspect ratio. This is not possible with just setting the width and height to 
+100%. This property is quite similar to background-size : cover, but for elements other than images, but it works with images too.
+        */
+}
+
+.form__group:not(:last-child) {
+    margin-bottom: 2rem;
+}
+
+.form__input {
+    font-size: 1.5rem;
+    font-family: inherit;
+    color: inherit;
+    padding: 1.5rem 2rem;
+    border-radius: 0.2rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-bottom: 0.3rem solid transparent;
+    /*    
+            When we add the border only in the focus
+state, and there is no border normally, then when the input element is focused, the element below it moves down a bit to create some space for the border. To rectify this, we set the border even in the normal state, but make the color transparent, so that the space required for the border is available from the start.
+        */
+    width: 90%;
+    display: block;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.form__input:focus {
+    outline: none;
+    -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    border-bottom: 0.3rem solid #55c57a;
+}
+
+.form__input:required {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    /*
+                Resetting the default CSS by Mozilla.
+            */
+}
+
+.form__input:focus:invalid {
+    border-bottom: 0.3rem solid #ff7730;
+    /*
+                The HTML5 tells us whether the input
+entered in the input forms are actually valid or not. Like, if there's no @ in the email, then it's obviously invalid. Thus, for these states, we can also style our form.
+            */
+}
+
+.form__input::-webkit-input-placeholder {
+    color: #999;
+    /*
+            This pseudo element is for the placeholder
+text.
+        */
+}
+
+.form__input::-moz-input-placeholder {
+    color: #999;
+    /*
+            This pseudo element is for the placeholder
+text.
+        */
+}
+
+.form__label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: 0.7rem;
+    display: block;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    /*
+            display must be set to block in order to
+use the above box model properties (margin).
+        */
+}
+
+.form__input:placeholder-shown + .form__label {
+    /*
+            placeholder-shown: Styling for when the
+placeholder is shown.
+            + selector: The adjacent sibling selector. 
+An adjacent sibling is the one that comes directly after the element we have selected. The sibling needs to be
+AFTER the element we have selected, not BEFORE.
+            ~ selector : The general sibling selector.
+        */
+    opacity: 0;
+    visibility: hidden;
+    /*
+            As long as the placeholder is being shown,
+we don't want our label to be seen.
+            If we set the opacity to 0, then the element 
+is still on the page, just hidden. But, if we set the visibility to hidden, then the element is really gone. But, since we cannot animate the visibility, but we CAN the opacity, so we set the opacity.
+        */
+    -webkit-transform: translateY(-4rem);
+    transform: translateY(-4rem);
+}
+
+.form__radio-group {
+    width: 49%;
+    display: inline-block;
+}
+
+.form__radio-input {
+    display: none;
+}
+
+.form__radio-label {
+    font-size: 1.6rem;
+    cursor: pointer;
+    position: relative;
+    padding-left: 4.5rem;
+}
+
+.form__radio-button {
+    height: 3rem;
+    width: 3rem;
+    border: 0.5rem solid #55c57a;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: -0.3rem;
+}
+
+.form__radio-button::after {
+    content: "";
+    display: block;
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 50%;
+    position: absolute;
+    /*
+                Now the parent of this is
+&__radio-button. Its position is set to absolute, while before whenever we want to use the absolute position, we had to the set the position of the parent container to relative. The position value doesn't really matter, all that matters is that the position is explicitly specified. Since in this case the position of its parent is explicitly specified to absolute, so it'll work.
+            */
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #55c57a;
+    opacity: 0;
+    -webkit-transition: opacity 0.2s;
+    transition: opacity 0.2s;
+}
+
+.form__radio-input:checked ~ .form__radio-label .form__radio-button::after {
+    opacity: 1;
+}
+
+.popup {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    /*
+        To animate it, we set the opacity to 0. But,
+the content is still clickable, so to hide that, we set visibility to hidden.
+    */
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.popup__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 75%;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    display: table;
+    /*
+            Now their children &__left and &__right 
+should be set to display : table-cell, then both of them will be given the same height.
+        */
+    overflow: hidden;
+    /*
+            The images hide the border-radius. So, 
+that's why overflow is set to hidden.
+        */
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%) scale(0.25);
+    transform: translate(-50%, -50%) scale(0.25);
+    -webkit-transition: all 0.5s 0.2s;
+    transition: all 0.5s 0.2s;
+    /*
+            last is delay.
+        */
+}
+
+.popup__left {
+    width: 33.333333%;
+    display: table-cell;
+}
+
+.popup__right {
+    width: 66.66666667%;
+    display: table-cell;
+    vertical-align: middle;
+    /*
+            property that is available when display : table-cell. This div will now be placed in the middle.
+        */
+    padding: 3rem 5rem;
+}
+
+.popup__img {
+    display: block;
+    width: 100%;
+}
+
+.popup__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+    -webkit-column-count: 2;
+    column-count: 2;
+    /*
+            Our text will be divided into two columns.
+        */
+    -webkit-column-gap: 4rem;
+    column-gap: 4rem;
+    -webkit-column-rule: 0.1rem solid #eee;
+    column-rule: 0.1rem solid #eee;
+    /*
+            Like a line between the two columns.
+        */
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    /*
+            Place hyphens automatically. Requires the
+HTML lang attribute to be specified!!!
+        */
+}
+
+.popup:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup:target .popup__content {
+    opacity: 1;
+    -webkit-transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup__close:link,
+.popup__close:visited {
+    color: #777;
+    position: absolute;
+    top: 2.5rem;
+    right: 2.5rem;
+    font-size: 3rem;
+    text-decoration: none;
+    diplay: inline-block;
+    -webkit-transform: all 0.2s;
+    transform: all 0.2s;
+    line-height: 1;
+}
+
+.popup__close:hover {
+    color: #55c57a;
+}
+
+/***********************
+* HEADER
+***********************/
+.header {
+    height: 95vh;
+    /*
+        height should be 95% of the viewport height.
+    */
+    background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(126, 213, 111, 0.8)), to(rgba(40, 180, 133, 0.8))), url("../img/hero.jpg");
+    background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
+    background-size: cover;
+    /*
+        It will always try to fit the element inside
+the box, whatever the width.
+    */
+    background-position: top;
+    /*
+        Ensures that whatever the viewport size, the 
+top of the image stays at the top of the container.
+    */
+    position: relative;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    -moz-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    /*
+        We need to specify the coords of the 4 corners
+to specify the dimensions of the polygon. Then we can get that nice 'cut' in the image. The coords are specified clockwise. These are not absolute coords, but relative.
+    */
+}
+
+.header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+}
+
+.header__logo {
+    height: 3.5rem;
+}
+
+.header__text-box {
+    position: absolute;
+    top: 40%;
+    /*
+            50% would put the first pixel (top-left) at 
+exactly the center from the top. But, since we cut out a wedge from the bottom, it looks as though its not quite centered (when it actually really is). To compensate for that, we set the top to 40%.
+    */
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    /*
+            Shifts half of the width to the left (x-axis), and half to the top. (y-axis)
+    
+        */
+    text-align: center;
+}
+
+.row {
+    max-width: 114rem;
+    /*
+        max-width means that if the specified width is
+available, then ofcourse, occupy that. But if it is not, then just occupy 100% of the available space.
+    */
+    margin: 0 auto;
+    /*
+        For centering a block element inside of another 
+block element.
+    */
+}
+
+.row:not(:last-child) {
+    margin-bottom: 8rem;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2);
+    /*
+            calc() is a native CSS function, not a SASS
+function. Thus, in order to use SASS variables in CSS, we have to precede them with a hash (#) and wrap them in curly braces {}.
+        */
+}
+
+.row .col-1-of-3 {
+    width: calc((100% - (2 * 6rem)) / 3);
+}
+
+.row .col-2-of-3 {
+    width: calc(2 * ((100% - 2 * (6rem)) / 3) + 6rem);
+    /*
+            Double the width of .col-1-of-3, so multiply
+by 2, and also add the $gutter-horizontal.
+        */
+}
+
+.row .col-1-of-4 {
+    width: calc((100% - (3 * 6rem)) / 4);
+}
+
+.row .col-2-of-4 {
+    width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem);
+}
+
+.row .col-3-of-4 {
+    width: calc(3 * ((100% - 3 * 6rem) / 4) + (2 * 6rem));
+}
+
+.footer {
+    background-color: #333;
+    padding: 10rem 0;
+    font-size: 1.4rem;
+    color: #f7f7f7;
+}
+
+.footer__logo-box {
+    text-align: center;
+    /*
+            An inline element (in this case, img) behaves
+just like text. So, we can use text-align to center it.
+        */
+    margin-bottom: 8rem;
+}
+
+.footer__logo {
+    width: 15rem;
+    height: auto;
+}
+
+.footer__navigation {
+    border-top: 0.1rem solid #777;
+    padding-top: 2rem;
+    display: inline-block;
+    /*
+            An inline-block doesn't occupy 100% of the 
+available width, only the width that its content needs.
+        */
+}
+
+.footer__list {
+    list-style: none;
+}
+
+.footer__item {
+    display: inline-block;
+}
+
+.footer__item:not(:last-child) {
+    margin-right: 1.5rem;
+}
+
+.footer__link:link,
+.footer__link:visited {
+    color: #f7f7f7;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    background-color: #333;
+}
+
+.footer__link:hover,
+.footer__link:active {
+    color: #55c57a;
+    -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+    -webkit-transform: rotate(5deg) scale(1.3);
+    transform: rotate(5deg) scale(1.3);
+}
+
+.footer__copyright {
+    border-top: 0.1rem solid #777;
+    padding-top: 2rem;
+    width: 80%;
+    float: right;
+}
+
+.navigation__checkbox {
+    display: none;
+}
+
+.navigation__button {
+    background-color: #fff;
+    height: 7rem;
+    width: 7rem;
+    position: fixed;
+    top: 6rem;
+    right: 6rem;
+    border-radius: 50%;
+    z-index: 2000;
+    -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+    text-align: center;
+    /*
+            To center the hamburger icon.
+        */
+    cursor: pointer;
+}
+
+.navigation__background {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 6.5rem;
+    right: 6.5rem;
+    background-image: radial-gradient(#7ed56f, #28b485);
+    z-index: 1000;
+    -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+    transition: -webkit-transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1), -webkit-transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.navigation__nav {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1500;
+    opacity: 0;
+    width: 0;
+    /*
+            Opacity is set to 0, but the they are still
+there. So, when we hover over them, the cursor changes. To rectify that, the width is set to 0.
+        */
+    -webkit-transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.navigation__list {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    list-style: none;
+    text-align: center;
+    width: 100%;
+}
+
+.navigation__item {
+    margin: 1rem;
+}
+
+.navigation__link:link,
+.navigation__link:visited {
+    display: inline-block;
+    font-size: 3rem;
+    font-weight: 300;
+    padding: 1rem 2rem;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #fff 50%);
+    background-size: 230%;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.navigation__link:link span,
+.navigation__link:visited span {
+    display: inline-block;
+    margin-right: 1.5rem;
+}
+
+.navigation__link:hover,
+.navigation__link:active {
+    background-position: 100%;
+    color: #55c57a;
+    -webkit-transform: translateX(1rem);
+    transform: translateX(1rem);
+}
+
+.navigation__checkbox:checked ~ .navigation__background {
+    -webkit-transform: scale(80);
+    transform: scale(80);
+}
+
+.navigation__checkbox:checked ~ .navigation__nav {
+    opacity: 1;
+    width: 100%;
+}
+
+.navigation__icon {
+    position: relative;
+    margin-top: 3.5rem;
+}
+
+.navigation__icon,
+.navigation__icon::before,
+.navigation__icon::after {
+    width: 3rem;
+    height: 2px;
+    background-color: #777;
+    display: inline-block;
+}
+
+.navigation__icon::before,
+.navigation__icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.navigation__icon::before {
+    top: -0.8rem;
+}
+
+.navigation__icon::after {
+    top: 0.8rem;
+}
+
+.navigation__button:hover .navigation__icon::before {
+    top: -1rem;
+}
+
+.navigation__button:hover .navigation__icon::after {
+    top: 1rem;
+}
+
+.navigation__checkbox:checked + .navigation__button .navigation__icon {
+    background-color: transparent;
+}
+
+.navigation__checkbox:checked + .navigation__button .navigation__icon::before {
+    top: 0;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+.navigation__checkbox:checked + .navigation__button .navigation__icon::after {
+    top: 0;
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+
+.section-about {
+    background-color: #f7f7f7;
+    padding: 25rem 0;
+    margin-top: -20vh;
+}
+
+.section-features {
+    padding: 20rem 0;
+    background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(126, 213, 111, 0.8)), to(rgba(40, 180, 133, 0.8))), url("../img/nat-4.jpg");
+    background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/nat-4.jpg");
+    background-size: cover;
+    -webkit-transform: skewY(-7deg);
+    transform: skewY(-7deg);
+    margin-top: -10rem;
+    /*
+        > is the direct child selector. Selects all direct
+childs. No indirect childs. Since we put *, all direct childs will be selected.
+    */
+}
+
+.section-features > * {
+    -webkit-transform: skewY(7deg);
+    transform: skewY(7deg);
+}
+
+.section-tours {
+    background-color: #f7f7f7;
+    padding: 25rem 0 15rem 0;
+    margin-top: -10rem;
+}
+
+.section-stories {
+    position: relative;
+    padding: 15rem 0;
+    /*
+        No background color since it's background is a 
+video. If we set a background color, then the video wont be shown due to the video's z-index.
+    */
+}
+
+.section-book {
+    padding: 15rem 0;
+    background-image: -webkit-gradient(linear, left top, right bottom, from(#7ed56f), to(#28b485));
+    background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
+}
+
+.book {
+    background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 50%), url("../img/nat-10.jpg");
+    background-size: 100%;
+    /*
+        100% here means the same thing as cover.
+        
+        transparent is a valid CSS color. In the
+background image, we have basically said that from 0% of the gradient to 50%, we want a white color with 0.9 opacity. After that, we want a transparent color. We have also defined an angle of the gradient.
+    */
+    height: 50rem;
+    border-radius: 0.3px;
+    -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+}
+
+.book__form {
+    width: 50%;
+    padding: 6rem;
+}
